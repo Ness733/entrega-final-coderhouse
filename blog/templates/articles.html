@@ -6,7 +6,7 @@
   >
     <a href="{% url 'Crear Artículo' %}">Nuevo Artículo</a>
   </button>
-  <ul class="px-72 py-5">
+  <ul class="px-60 py-5">
     {% for a in articulo %}
     <li class="my-10">
       <h2 class="text-5xl mb-5 text-left">
@@ -17,7 +17,22 @@
       <div class="text-left"><small>{{a.fecha}}</small></div>
       <p class="mt-5 text-left">{{a.cuerpo}}</p>
     </li>
-    {% endfor %}
+
+    <button
+      class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black my-10"
+    >
+      <a href="{% url 'Crear Comentario' %}">Nuevo Comentario</a>
+    </button>
+    <h3>Comentarios...</h3>
+
+    {% for c in comentario %}
+    <li>
+      <h2>{{c.titulo}} - <small>{{c.fecha}}</small></h2>
+      <p>{{c.cuerpo}}</p>
+    </li>
+    {% empty %}
+    <h3>Aún no hay comentarios...</h3>
+    {% endfor %} {% endfor %}
   </ul>
 </main>
 {% endblock %}

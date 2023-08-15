@@ -1,5 +1,5 @@
 from django import forms
-from .models import Articulo, Comentario, Usuario
+from .models import Articulo, Comentario, Usuario, Noticia
 
 class ArticleForm(forms.ModelForm):
     class Meta:
@@ -9,6 +9,11 @@ class ArticleForm(forms.ModelForm):
 class ComentaryForm(forms.ModelForm):
     class Meta:
         model = Comentario
+        fields = "__all__"
+
+class NewsForm(forms.ModelForm):
+    class Meta:
+        model = Noticia
         fields = "__all__"
 
 class UserForm(forms.ModelForm):

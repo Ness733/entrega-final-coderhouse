@@ -4,3 +4,4 @@ from blog import models
 admin.site.register(models.Articulo)
 admin.site.register(models.Comentario)
 admin.site.register(models.Usuario)
+admin.site.register(models.Noticia)

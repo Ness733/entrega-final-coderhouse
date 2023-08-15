@@ -17,8 +17,9 @@ class Articulo(models.Model):
     
     
 class Comentario(models.Model):
+    # articulo = models.ForeignKey(Articulo, related_name="comentario", on_delete=models.CASCADE)
     titulo = models.CharField(max_length=20)
-    cuerpo = models.CharField(max_length=200)
+    cuerpo = models.TextField()
     fecha = models.DateTimeField(auto_now_add=True, editable=False)
 
     def __str__(self) -> str:
@@ -34,3 +35,11 @@ class Usuario(models.Model):
     
     def __str__(self) -> str:
         return self.username
+    
+class Noticia(models.Model):
+    titulo = models.CharField(max_length=30)
+    cuerpo = models.TextField()
+    fecha = models.DateTimeField(auto_now_add=True, editable=False)
+
+    def __str__(self) -> str:
+        return self.titulo
