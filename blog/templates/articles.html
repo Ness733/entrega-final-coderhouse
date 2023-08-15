@@ -1,0 +1,23 @@
+{% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
+<main class="text-center m-10 bg-slate-200 rounded-xl">
+  <h2 class="text-9xl py-10">Artículos</h2>
+  <button
+    class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+  >
+    <a href="{% url 'Crear Artículo' %}">Nuevo Artículo</a>
+  </button>
+  <ul class="px-72 py-5">
+    {% for a in articulo %}
+    <li class="my-10">
+      <h2 class="text-5xl mb-5 text-left">
+        {{a.titulo}} <small class="text-gray-400">- #{{a.id}}</small>
+      </h2>
+
+      <h3 class="text-3xl text-left">{{a.subtitulo}}</h3>
+      <div class="text-left"><small>{{a.fecha}}</small></div>
+      <p class="mt-5 text-left">{{a.cuerpo}}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</main>
+{% endblock %}

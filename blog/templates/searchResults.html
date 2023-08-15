@@ -1,0 +1,19 @@
+{% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
+<main class="text-center m-10 bg-slate-200">
+  <h2>
+    Mostrando {{articulo | length}} resultados para: {{form.titulo.value}}
+  </h2>
+  {% if articulo %}
+  <ul>
+    {% for art in articulo %}
+    <li>
+      <h3>{{ art.titulo }} - {{art.id}}</h3>
+      <h4>{{ art.subtitulo }} - {{ art.fecha }}</h4>
+
+      <p>{{art.cuerpo | slice:":100" | safe}}...</p>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</main>
+{% endblock %}
