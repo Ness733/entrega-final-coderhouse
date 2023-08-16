@@ -9,11 +9,29 @@
 </button>
 <ul class="px-60 py-5">
   {% if noticia %}
-  <ul class="px-60 py-5">
+  <ul class="px-30 py-5">
     {% for n in noticia %}
     <li><h2 class="text-5xl mb-5 text-left">{{n.titulo}} <small class="text-gray-400">- #{{n.id}}</small></h2></li>
     <div class="text-left"><small>{{n.fecha}}</small></div>
     <p class="mt-5 text-left my-10">{{n.cuerpo}}</p>
+    <p>
+      <button
+      class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+    >
+      <a href="{% url 'Detalle Noticia' n.pk %}">Detalle</a>
+    </button>
+      
+      <button
+      class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+    >
+      <a href="{% url 'Editar Noticia' n.pk %}">Editar</a>
+    </button>
+    <button
+    class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+  >
+    <a href="{% url 'Eliminar Noticia' n.pk %}">Eliminar</a>
+  </button>
+    </p>
     {% endfor %}
   </ul>
   {% endif %}

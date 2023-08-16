@@ -1,0 +1,19 @@
+{% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
+<main class="text-center m-10 bg-slate-200">
+  <h1>Editar Noticia</h1>
+  <form action="" method="POST">
+    {% csrf_token %} {{form.as_p}}
+    <h1>Esta seguro que desea eliminar la noticia: {{noticia.titulo}}</h1>
+    <button
+      class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+    >
+      Eliminar
+    </button>
+    <button
+    class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+  >
+    <a href="{% url "Noticias" %}">Volver</a>
+  </button>
+  </form>
+</main>
+{% endblock %}

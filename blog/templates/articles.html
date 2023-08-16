@@ -16,6 +16,22 @@
       <h3 class="text-3xl text-left">{{a.subtitulo}}</h3>
       <div class="text-left"><small>{{a.fecha}}</small></div>
       <p class="mt-5 text-left">{{a.cuerpo}}</p>
+      <button
+        class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+      >
+        <a href="{% url "Detalle Artículo" a.pk %}">Detalle</a>
+      </button>
+
+      <button
+        class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+      >
+        <a href="{% url "Editar Artículo" a.pk %}">Editar</a>
+      </button>
+      <button
+        class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+      >
+        <a href="{% url "Eliminar Artículo" a.pk %}">Eliminar</a>
+      </button>
     </li>
 
     <button

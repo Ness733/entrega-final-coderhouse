@@ -1,5 +1,7 @@
 from django import forms
 from .models import Articulo, Comentario, Usuario, Noticia
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
 
 class ArticleForm(forms.ModelForm):
     class Meta:
@@ -23,3 +25,8 @@ class UserForm(forms.ModelForm):
 
 class SearchArticle(forms.Form):
     titulo = forms.CharField(required=False)
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = get_user_model()
+        fields = UserCreationForm.Meta.fields

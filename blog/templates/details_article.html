@@ -1,0 +1,17 @@
+{% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
+<main class="text-center m-10 bg-slate-200">
+  <h1>Detalle de Articulo</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+
+    <h1>{{articulo.titulo}} - {{articulo.fecha}}</h1>
+    <p>{{articulo.cuerpo}}</p>
+    
+    <button
+      class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+    >
+      <a href="{% url "Artículos" %}">Volver</a>
+    </button>
+  </form>
+</main>
+{% endblock %}
