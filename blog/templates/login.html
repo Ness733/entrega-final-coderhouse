@@ -1,7 +1,19 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
-<main class="text-center m-10 bg-slate-200">
+<main class="text-center m-10 bg-slate-200 p-10">
   <h1>Sección Login</h1>
-  <form method="POST">{% csrf_token %} {{form.as_p}}
+  <form class="w-30" method="POST">{% csrf_token %}
+    <div>
+      <ul class="">
+        <li class="my-10 flex justify-center gap-10">
+          <label class="mr-6" for="">Usuario</label>
+          <input type="text" name="username" id="id_username"/>
+        </li>
+        <li class="my-10 flex justify-center gap-10">
+          <label for="">Contraseña</label>
+          <input type="password" name="password" id="id_password" cols="90" rows="10"></input>
+        </li>
+      </ul>
+    </div>
     <button
       class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
       type="submit"
