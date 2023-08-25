@@ -1,8 +1,7 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
-from django.views.generic import ListView, TemplateView, CreateView, UpdateView, DeleteView, DetailView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -10,24 +9,14 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import LoginView, LogoutView
 
 # Create your views here.
-@login_required
 def index(request):
     return render(request, "index.html")
 
-class ArticlesView(TemplateView):
+class ArticlesView(ListView):
+    model = Articulo
+    context_object_name = "articulo"
     template_name = "articles.html"
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["articulo"] = Articulo.objects.all()
-        context["comentario"] = Comentario.objects.all()
-        return context
 
-# def articles(request):
-#     comentario = Comentario.objects.all()
-#     articulo = Articulo.objects.all()
-#     return render(request, "articles.html", {"articulo": articulo, "comentario": comentario})
-@login_required
 def about(request):
     return render(request, "about.html")
 
@@ -55,21 +44,21 @@ class NewsDelete(DeleteView):
     template_name = "delete_news.html"
     success_url = reverse_lazy("Noticias")
 
-# def news(request):
-#     noticia = Noticia.objects.all()
-#     return render(request, "news.html", {'noticia': noticia})
-
 class ArticleCreateView(CreateView):
     model = Articulo
     template_name = 'create_article.html'
-    fields = ["titulo", "subtitulo", "cuerpo"]
+    fields = ["titulo", "subtitulo", "cuerpo", 'imagen']
     success_url = reverse_lazy("Artículos")
+
+    def form_valid(self, form):
+        form.instance.imagen = self.request.FILES['imagen'].name if 'imagen' in self.request.FILES else None
+        return super().form_valid(form)
 
 class ArticleUpdate(UpdateView):
     model = Articulo
     template_name = "update_article.html"
     success_url = reverse_lazy("Artículos")
-    fields = ["titulo", "subtitulo", "cuerpo"]
+    fields = ["titulo", "subtitulo", "cuerpo", "imagen"]
 
 class ArticleDelete(DeleteView):
     model = Articulo
@@ -80,18 +69,6 @@ class ArticleDetails(DetailView):
     model = Articulo
     context_object_name = "articulo"
     template_name = "details_article.html"
-    
-
-
-# def crear_Articulo(request):
-#     if request.method == 'POST':
-#         form = ArticleForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('Artículos')
-#     else:
-#         form = ArticleForm()
-#     return render(request, 'create_article.html', {'form': form})
 
 class NewsCreateView(CreateView):
     model = Noticia
@@ -99,31 +76,15 @@ class NewsCreateView(CreateView):
     fields = ["titulo", "cuerpo"]
     success_url = reverse_lazy("Noticias")
 
-# def crear_Noticia(request):
-#     if request.method == 'POST':
-#         form = NewsForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('Noticias')
-#     else:
-#         form = NewsForm()
-#     return render(request, 'create_news.html', {'form': form})
-
 class CommentCreateView(CreateView):
     model = Comentario
     template_name = 'create_comment.html'
     fields = ["titulo", "cuerpo"]
     success_url = reverse_lazy("Artículos")
 
-# def crear_Comentario(request):
-#     if request.method == 'POST':
-#         form = ComentaryForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('Artículos')
-#     else:
-#         form = ComentaryForm()
-#     return render(request, 'create_comment.html', {'form': form})
+    def form_valid(self, form):
+        form.instance.comment_id = self.kwargs['pk']
+        return super(CommentCreateView, self).form_valid(form)
 
 # buscador
 def searchResults(request):
@@ -152,8 +113,23 @@ class CustomLoginView(LoginView):
             return redirect("index")
         return response
     
+def EditProfileView(request):
+    usuario = request.user
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            if form.cleaned_data.get('imagen'):
+                usuario.avatar.imagen = form.cleaned_data.get('imagen')
+                usuario.avatar.save()
+            
+            form.save()
+            return render(request, 'index.html')
+    else:
+        form = UserEditForm(initial={'imagen': usuario.avatar.imagen},instance=request.user)
+    return render(request, 'update_profile.html', {'form': form, 'usuario': usuario})
+    
 class CustomLogoutView(LogoutView):
-    next_page = 'login'
+    template_name = 'logout.html'
 
 def login_request(request):
     if request.method == 'POST':

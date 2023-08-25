@@ -1,0 +1,43 @@
+{% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
+<main class="text-center m-10 p-10 bg-slate-200 rounded-xl">
+  <h1>Editar Perfil</h1>
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+  <div class="flex flex-col gap-4 p-10 place-items-center">
+    <img class="w-40 h-40 rounded-full" src="{{request.user.avatar.imagen.url}}" alt="{{request.user.avatar.imagen}}">
+    <span>Avatar</span>
+  </div>
+  <div>
+    <ul class="flex flex-col-reverse gap-5">
+      <li class="translate-x-2">
+        <label class="pr-5" for="">Email:</label>
+        {{form.email}}
+      </li>
+      <li class="-translate-x-3">
+        <label class="pr-5" for="">Cambiar Avatar:</label>
+        {{form.imagen}}
+      </li>
+      <li>
+        <label class="pr-5" for="">Apellido:</label>
+        {{form.last_name}}
+      </li>
+      <li>
+        <label class="pr-5" for="">Nombre:</label>
+        {{form.first_name}}
+      </li>
+    </ul>
+  </div>
+    
+    <button type="submit"
+    class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+  >
+    Guardar Cambios
+  </button>
+    <button
+    class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+  >
+    <a href="{% url "index" %}">Volver</a>
+  </button>
+  </form>
+</main>
+{% endblock %}

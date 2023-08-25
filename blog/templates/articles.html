@@ -1,54 +1,41 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
 <main class="text-center m-10 bg-slate-200 rounded-xl">
-  <h2 class="text-9xl py-10">Artículos</h2>
-  <button
-    class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
-  >
-    <a href="{% url 'Crear Artículo' %}">Nuevo Artículo</a>
-  </button>
+  <h2 class="text-5xl text-white font-bold py-20 bg-slate-600 mb-10">Artículos</h2>
+  <a href="{% url 'Crear Artículo' %}"
+    class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-2"
+  >Crear Artículo
+  </a>
   <ul class="px-60 py-5">
     {% for a in articulo %}
-    <li class="my-10">
-      <h2 class="text-5xl mb-5 text-left">
-        {{a.titulo}} <small class="text-gray-400">- #{{a.id}}</small>
+    <li class="my-10 pb-10 border-b-2 border-gray-400">
+      <h2 class="text-4xl mb-5 text-left font-bold">
+      {{a.titulo}} <small class="text-gray-400">- #{{a.id}}</small>
       </h2>
-
       <h3 class="text-3xl text-left">{{a.subtitulo}}</h3>
-      <div class="text-left"><small>{{a.fecha}}</small></div>
-      <p class="mt-5 text-left">{{a.cuerpo}}</p>
-      <button
-        class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
-      >
-        <a href="{% url "Detalle Artículo" a.pk %}">Detalle</a>
-      </button>
-
-      <button
-        class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
-      >
-        <a href="{% url "Editar Artículo" a.pk %}">Editar</a>
-      </button>
-      <button
-        class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
-      >
-        <a href="{% url "Eliminar Artículo" a.pk %}">Eliminar</a>
-      </button>
+      <div class="text-left"><small>Autor: {{a.user}}</small></div>
+      <div class="text-left"><small>Fecha de Publicación: {{a.fecha}}</small></div>
+      {% if a.imagen %}
+      <img src="{{a.imagen.url}}" alt="{{a.titulo}}">
+      {% endif %}
+      <div class="text-left">
+        <p class="mt-5">{{a.cuerpo | slice:":250" | safe }}...</p>
+      </div>
+      <ul class="flex gap-3">
+        <a href="{% url "Detalle Artículo" a.pk %}"
+          class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+        >Leer más
+        </a>
+        <a href="{% url "Editar Artículo" a.pk %}"
+          class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+        >Editar
+        </a>
+        <a href="{% url "Eliminar Artículo" a.pk %}"
+          class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+        >Eliminar
+        </a>
+      </ul>
     </li>
-
-    <button
-      class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black my-10"
-    >
-      <a href="{% url 'Crear Comentario' %}">Nuevo Comentario</a>
-    </button>
-    <h3>Comentarios...</h3>
-
-    {% for c in comentario %}
-    <li>
-      <h2>{{c.titulo}} - <small>{{c.fecha}}</small></h2>
-      <p>{{c.cuerpo}}</p>
-    </li>
-    {% empty %}
-    <h3>Aún no hay comentarios...</h3>
-    {% endfor %} {% endfor %}
+     {% endfor %}
   </ul>
 </main>
 {% endblock %}

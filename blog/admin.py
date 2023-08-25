@@ -3,5 +3,5 @@ from blog import models
 # Register your models here.
 admin.site.register(models.Articulo)
 admin.site.register(models.Comentario)
-admin.site.register(models.Usuario)
 admin.site.register(models.Noticia)
+admin.site.register(models.Avatar)

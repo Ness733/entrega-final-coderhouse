@@ -1,12 +1,11 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
 
-<main class="text-center m-10 bg-slate-200 p-10">
-  <h1>Sección Crear Artículos</h1>
-  <h2>Crear Artículo</h2>
+<main class="text-center m-10 bg-slate-200 p-10 rounded-xl">
+  <h2 class="text-3xl">Nuevo Artículo</h2>
 
   <ul>
-    <form method="post">
-      {% csrf_token %}
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %} {{ form.media }}
       <li class="mt-5"><label for="">Título</label></li>
       <li>
         <input type="text" name="titulo" id="id_titulo" style="width: 400px" />
@@ -20,17 +19,26 @@
           style="width: 400px"
         />
       </li>
-      <li class="mt-5">
-        <label for="">Texto</label>
+      <li class="mt-5"></li>
+      <li class="my-5">
+        <label for="">Imagen:</label>
+        {{form.imagen}}
       </li>
-      <li>
-        <textarea name="cuerpo" id="id_cuerpo" cols="90" rows="10"></textarea>
-      </li>
-      <button
-        class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
-      >
-        <a action="submit">Guardar</a>
-      </button>
+      <li>{{form.cuerpo}}</li>
+
+      <div class="flex gap-3 justify-center">
+        <button
+          action="submit"
+          class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+        >
+          Publicar
+        </button>
+        <a
+          href="{% url 'Artículos' %}"
+          class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+          >Volver
+        </a>
+      </div>
     </form>
   </ul>
 </main>

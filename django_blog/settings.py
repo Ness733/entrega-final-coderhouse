@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +26,9 @@ SECRET_KEY = 'django-insecure-!$@uc3vc1mxy76zrni+)7y8uz(@omldivz%ziycyo1ormvm5h%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "192.168.1.101"]
 
-INTERNAL_IPS = [ "127.0.0.1", ]
+INTERNAL_IPS = [ "127.0.0.1", "0.0.0.0"]
 
 
 # Application definition
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'theme',
     'django_browser_reload',
     'blog',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -112,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 USE_I18N = True
 
@@ -123,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -134,3 +137,9 @@ TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = r"C:/Program Files/nodejs/npm.cmd"
 
 LOGIN_URL = 'login/'
+
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

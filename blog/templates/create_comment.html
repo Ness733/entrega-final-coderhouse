@@ -1,27 +1,26 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
-<main class="text-center m-10 bg-slate-200 p-10">
-  <h1>Sección Crear Comentario</h1>
-  <h2>Crear Comentario</h2>
+<main class="text-center m-10 bg-slate-200 p-10 rounded-xl">
+  <h2>Nuevo Comentario</h2>
 
   <ul>
     <form method="post">
-      {% csrf_token %}
+      {% csrf_token %} {{form.media}}
       <li class="my-10">
-        <label for="">Título</label>
+        <label class="mx-5">Título:</label>
         <input type="text" name="titulo" id="id_titulo" style="width: 400px" />
       </li>
-      <li>
-        <label for="">Comentario</label>
+      <li>{{form.cuerpo}}</li>
+      <li class="pt-10">
+        <button
+          action="submit"
+          class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+        >
+          Enviar
+        </button>
       </li>
-      <li>
-        <textarea name="cuerpo" id="id_cuerpo" cols="90" rows="10"></textarea>
-      </li>
-      <button
-        class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
-      >
-        <a action="submit">Guardar</a>
-      </button>
     </form>
+    <input type="hidden" name="next" value="{% url "Detalle Artículo"
+    articulo.pk %}" />
   </ul>
 </main>
 {% endblock %}

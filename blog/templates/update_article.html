@@ -1,8 +1,8 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
-<main class="text-center m-10 bg-slate-200">
+<main class="text-center m-10 bg-slate-200 rounded-xl">
   <h1>Editar Artículo</h1>
-  <form action="" method="POST">
-    {% csrf_token %} {{form.as_p}}
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{form.media}} {{form.as_p}}
     <button
     class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
   >

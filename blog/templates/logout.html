@@ -1,0 +1,11 @@
+{% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
+<main class="text-center m-10 bg-slate-200 p-10 rounded-xl">
+  <h2>Cerrar Sesión</h2>
+  <p>Has cerrado sesión exitosamente.</p>
+  <button
+      class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+    >
+      <a href="{% url "login" %}">Iniciar Sesión</a>
+    </button>
+</main>
+{% endblock %}

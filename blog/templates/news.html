@@ -1,5 +1,5 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
-<main class="text-center m-10 bg-slate-200">
+<main class="text-center m-10 bg-slate-200 rounded-xl">
   <h1>Sección Noticias</h1>
   <h2>Noticias</h2>
   <button
@@ -13,7 +13,7 @@
     {% for n in noticia %}
     <li><h2 class="text-5xl mb-5 text-left">{{n.titulo}} <small class="text-gray-400">- #{{n.id}}</small></h2></li>
     <div class="text-left"><small>{{n.fecha}}</small></div>
-    <p class="mt-5 text-left my-10">{{n.cuerpo}}</p>
+    <p class="mt-5 text-left my-10">{{n.cuerpo | safe }}</p>
     <p>
       <button
       class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"

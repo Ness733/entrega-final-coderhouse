@@ -1,7 +1,9 @@
 from django import forms
-from .models import Articulo, Comentario, Usuario, Noticia
-from django.contrib.auth.forms import UserCreationForm
+from .models import Articulo, Comentario, Noticia
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+
 
 class ArticleForm(forms.ModelForm):
     class Meta:
@@ -18,10 +20,16 @@ class NewsForm(forms.ModelForm):
         model = Noticia
         fields = "__all__"
 
-class UserForm(forms.ModelForm):
+class UserEditForm(UserChangeForm):
+    password = None
+    email = forms.EmailField(label="Ingrese su email:")
+    last_name = forms.CharField(label="Apellido")
+    first_name = forms.CharField(label="Nombre")
+    imagen = forms.ImageField(widget=forms.FileInput, required=False)
+
     class Meta:
-        model = Usuario
-        fields = "__all__"
+        model = User
+        fields = ['email', 'last_name', 'first_name', 'imagen']
 
 class SearchArticle(forms.Form):
     titulo = forms.CharField(required=False)
