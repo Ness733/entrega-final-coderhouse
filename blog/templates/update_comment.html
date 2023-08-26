@@ -1,0 +1,27 @@
+{% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
+<main class="text-center m-10 p-10 bg-slate-200 rounded-xl">
+  <h1 class="text-2xl p-5">Editar Comentario</h1>
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{form.media}}
+    <ul class="flex flex-col gap-3">
+        <li>
+        <label>Título: </label>
+        {{form.titulo}}
+        </li>
+        <li>{{form.cuerpo}}</li>
+    </ul>
+    <button
+    class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+  >
+    Guardar Cambios
+  </button>
+  <input
+  type=button
+  value='Volver'
+  onClick="javascript:history.go(-1);"
+  class="bg-indigo-500 hover:cursor-pointer shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+  >
+  </input>
+  </form>
+</main>
+{% endblock %}

@@ -29,10 +29,22 @@
         </div>
         <h2 class="text-xl font-bold">{{comentario.titulo}}</h2>
         <p class="text-xl">{{comentario.cuerpo | safe}}</p>
+        <div
+         class="flex gap-3 place-content-end">
+          <a href="{% url "Eliminar Comentario" comentario.pk %}"
+            class="bg-red-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+          >Eliminar
+          </a>
+          <a href="{% url "Editar Comentario" comentario.pk %}"
+            class="bg-green-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+          >Editar
+          </a>
+        </div>
       </div>
       {% empty %}
       <h3 class="text-2xl text-gray-500 pt-5">Aún no hay comentarios...</h3>
       {% endfor %}
+
       <ul class="flex flex-row gap-3 items-center place-content-center">
         <a
           href="{% url 'Crear Comentario' articulo.pk %}"

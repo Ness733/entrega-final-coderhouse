@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
@@ -76,15 +76,35 @@ class NewsCreateView(CreateView):
     fields = ["titulo", "cuerpo"]
     success_url = reverse_lazy("Noticias")
 
+class CommentDelete(DeleteView):
+    model = Comentario
+    template_name = 'delete_comment.html'
+
+    
+    def get_success_url(self) -> str:
+        return reverse('Detalle Artículo', kwargs={'pk': self.object.comment_id})
+
+class CommentUpdate(UpdateView):
+    model = Comentario
+    template_name = 'update_comment.html'
+    fields = ['titulo', 'cuerpo']
+    
+    def get_success_url(self) -> str:
+        return reverse('Detalle Artículo', kwargs={'pk': self.object.comment_id})
+
 class CommentCreateView(CreateView):
     model = Comentario
     template_name = 'create_comment.html'
     fields = ["titulo", "cuerpo"]
-    success_url = reverse_lazy("Artículos")
+    # success_url = reverse_lazy("Artículos")
 
     def form_valid(self, form):
         form.instance.comment_id = self.kwargs['pk']
+        self.pk = form.instance.comment_id
         return super(CommentCreateView, self).form_valid(form)
+    
+    def get_success_url(self) -> str:
+        return reverse('Detalle Artículo', kwargs={'pk': self.pk})
 
 # buscador
 def searchResults(request):

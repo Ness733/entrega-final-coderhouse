@@ -20,17 +20,17 @@
       <div class="text-left">
         <p class="mt-5">{{a.cuerpo | slice:":250" | safe }}...</p>
       </div>
-      <ul class="flex gap-3">
+      <ul class="flex gap-3 place-content-end">
         <a href="{% url "Detalle Artículo" a.pk %}"
           class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
         >Leer más
         </a>
         <a href="{% url "Editar Artículo" a.pk %}"
-          class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+          class="bg-green-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
         >Editar
         </a>
         <a href="{% url "Eliminar Artículo" a.pk %}"
-          class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+          class="bg-red-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
         >Eliminar
         </a>
       </ul>

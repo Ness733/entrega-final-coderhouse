@@ -17,10 +17,15 @@
         >
           Enviar
         </button>
+        <input
+        type=button
+        value='Volver'
+        onClick="javascript:history.go(-1);"
+        class="bg-indigo-500 hover:cursor-pointer shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+        >
+        </input>
       </li>
     </form>
-    <input type="hidden" name="next" value="{% url "Detalle Artículo"
-    articulo.pk %}" />
   </ul>
 </main>
 {% endblock %}
