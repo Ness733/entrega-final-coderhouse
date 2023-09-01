@@ -16,7 +16,7 @@
     {% for n in noticia %}
     <li><h2 class="text-5xl mb-5 text-left">{{n.titulo}}</h2></li>
     <div class="text-left text-2xl"><small>{{n.fecha}}</small></div>
-    <li class="mt-5 text-left text-2xl my-10">{{n.cuerpo | safe }}</li>
+    <li class="mt-5 text-left text-2xl my-10">{{n.cuerpo | safe | slice:":100" }}...</li>
     <p>
       <button
       class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"

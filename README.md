@@ -1,27 +1,39 @@
 ## TuPrimeraPagina-Rosales
 
+Demostración del sitio
+
+(https://www.youtube.com/watch?v=2IybyLj6Y_E "Trabajo Final - Blog - CoderHouse - Nestor Rosales")
+
 # Secciones y Funcionalidades
 
-**Sección Inicio:** 
+**Sección Inicio:**
 
-  Permite retornar a la página inicial desde cualquier sección.
+Permite retornar a la página inicial desde cualquier sección.
 
 **Sección Artículos:**
 
-  Es donde se visualizan todos los artículos del sitio, junto a sus respectivos comentarios 
-  (falta implementar el sistema de comentarios a cada artículo, de momento se visualizan todos los comentarios en todos los artículos).
-  Dentro de esta misma sección se pueden crear nuevos artículos y nuevos comentarios seleccionando los botones correspondientes. 
-  Luego de guardar exitosamente un nuevo articulo o comentario, el usuario es redirigido a la sección de Artículos nuevamente.
+Es donde se visualizan todos los artículos del sitio, junto a sus respectivos comentarios e imagenes.
+Solo el superusuario puede crear nuevos artículos. Los usuarios registrados pueden ver los artículos, comentarios y publicar comentarios.
 
-**Sección Sobre Nosotros:**
+**Sección Comentarios:**
 
-  En el futuro tendrá una descripción del sitio y los objetivos.
+Los comentarios muestran el usuario que lo generó junto a su avatar y la fecha. Es posible visitar
+los perfiles de los usuarios haciendo click en su nombre. Solo los autores de los comentarios pueden
+modificar o eliminar sus comentarios.
+
+**Sección Sobre Mí:**
+
+Breve descripción personal.
 
 **Sección Noticias:**
 
-  Permite crear noticias relacionadas al contenido del sitio u otras. Cuenta con un botón de creación de nuevas noticias
-  que al guardarse exitosamente redirecciona a la sección Noticias.
+Permite crear noticias relacionadas al contenido del sitio u otras. Cuenta con un botón de creación de nuevas noticias para el superusuario. Los usuarios autenticados pueden ver la sección de Noticias.
 
-**Barra de búsqueda:** 
+**Barra de búsqueda:**
 
-  De momento la barra funciona para devolver artículos cuyo título incluya la palabra buscada.
+De momento la barra funciona para devolver artículos cuyo título incluya la palabra buscada.
+
+**Perfil de usuario:**
+
+Permite visualizar la información del usuario una vez que ha ingresado exitosamente.
+También puede editar su información personal y cambiar la contraseña.
