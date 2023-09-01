@@ -1,14 +1,17 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
-<main class="text-center m-10 bg-slate-200 rounded-xl">
-  <h1>Eliminar Artículo</h1>
+<main class="text-center m-10 p-10 bg-slate-200 rounded-xl">
   <form action="" method="POST">
     {% csrf_token %} {{form.as_p}}
-    <h1>
-      Esta seguro que desea eliminar el artículo: {{articulo.titulo}} -
-      #{{articulo.id}}
-    </h1>
+    <strong class="text-3xl">
+      Esta seguro que desea eliminar el artículo: 
+    </strong>
+    <h1 class="text-3xl font-bold">{{articulo.titulo}}</h1>
+    <p class="text-2xl">
+      <strong for="html">Cuerpo del artículo:</strong>
+      <div class="text-3xl">{{articulo.cuerpo | slice:":200" | safe }}...</div>
+    </p>
     <button
-      class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+      class="bg-red-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
     >
       Eliminar
     </button>

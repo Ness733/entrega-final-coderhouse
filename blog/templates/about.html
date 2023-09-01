@@ -1,33 +1,26 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
-<main class="text-center m-10 p-10 bg-slate-200 rounded-xl">
-  <h1 class="text-3xl">Sobre Nosotros</h1>
-  <p class="m-5 mx-60 text-2xl">
-    Ad officia aliqua in elit minim aliquip voluptate ex id mollit anim officia
-    fugiat elit. Commodo aliquip laboris et sunt excepteur incididunt culpa
-    aliqua tempor nisi commodo excepteur. Nisi fugiat laboris ut nostrud non qui
-    magna consectetur. <br />
-    <br />
-    Labore sint duis duis non ut labore enim. Deserunt laborum adipisicing sunt
-    cillum dolor. Proident id eiusmod cillum ipsum occaecat aliquip et
-    incididunt sunt adipisicing sunt.<br />
-    <br />
-    Dolore ex nulla esse amet eu consequat commodo ipsum. Officia irure magna
-    nulla et anim pariatur reprehenderit aliquip aute consequat in et eu. Magna
-    consectetur commodo dolor aute ea ut fugiat voluptate irure incididunt magna
-    dolore commodo exercitation. Sunt consequat consectetur ad qui cupidatat id
-    cupidatat laborum dolore adipisicing. Ex voluptate reprehenderit consequat
-    laborum velit qui pariatur id cupidatat.<br />
-    <br />
-    Dolore laboris nostrud do sit. Ullamco irure aute sunt adipisicing nulla
-    deserunt irure occaecat in dolore. Aliquip mollit deserunt dolor amet
-    deserunt fugiat magna elit. Anim minim quis quis proident nulla excepteur.
-    Sunt enim sint irure magna cillum minim veniam ipsum ipsum velit. Dolor id
-    consequat magna ipsum.<br />
-    <br />
-    Duis in in qui esse irure proident qui est aliquip reprehenderit mollit do.
-    Cupidatat excepteur est ex eu. Lorem amet non excepteur minim laborum amet
-    sint irure veniam sit amet mollit. Minim ullamco pariatur ea magna laboris
-    deserunt incididunt excepteur cupidatat cupidatat sunt duis ipsum irure.
-  </p>
+<main class="text-center m-10 bg-slate-200 rounded-xl">
+  <div class="py-20 bg-blue-500 mb-10">
+    <label class="text-5xl text-white font-bold shadow-black drop-shadow-lg">Sobre Mí</label>
+  </div>
+  <div class="m-5 mx-60 text-2xl flex flex-col gap-5">
+    <img class="w-80 rounded-xl mx-auto" src="../../media/48396333.jpg" alt="foto_de_perfil_nestor" />
+    <p class="text-left">
+      En este momento me estoy formando como programador con la meta de
+      convertirme en un desarrollador Full-Stack. Junto con este curso estoy
+      realizando la segunda etapa del Argentina Programa 4.0 y realizando
+      proyectos por mi cuenta para no dejar de aprender sobre las diferentes
+      tecnologías y herramientas disponibles a los desarrolladores.</p>
+      
+      <p class="text-left">
+      En este proyecto, aparte de Python y Django, implementé Tailwind CSS 
+      para aplicar los estilos a los elementos de la página de una manera
+      más dinámica y ágil. Si bien estoy muy conforme con el proyecto,
+      quedan funcionalidades pendientes por agregar para decir que 
+      se encuentra completo(permitir a los usuarios eliminar su cuenta,
+      mensajes directos entre usuarios, integración con redes sociales, etc.)
+      </p>
+    </p>
+  </div>
 </main>
 {% endblock %}

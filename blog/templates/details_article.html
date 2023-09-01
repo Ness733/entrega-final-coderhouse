@@ -27,10 +27,8 @@
           <div class="flex gap-3 items-center">
             {% if comentario.user.avatar.imagen  %}
             <img class="h-10 w-10 rounded-full" src="{{comentario.user.avatar.imagen.url}}" alt="{{comentario.user}}">
-            {% else %}
-            <img class="h-10 w-10 rounded-full" src="{{request.user.avatar.imagen.url}}" alt="{{request.user}}">
             {% endif %}
-            <a class="text-3xl text-blue-700 font-bold" href="{% url "Perfil" comentario.user %}">{{comentario.user}}</a>
+            <a class="text-2xl text-blue-700 font-bold" href="{% url "Perfil" comentario.user %}">{{comentario.user}}</a>
           </div>
           <small>{{comentario.fecha}}</small>
           

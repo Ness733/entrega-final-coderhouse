@@ -3,7 +3,7 @@ from .models import *
 from .forms import *
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy, reverse
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 # from django.contrib.auth.forms import AuthenticationForm
 # from django.contrib.auth import login, authenticate
 # from django.contrib.auth.views import LoginView, LogoutView
@@ -23,7 +23,7 @@ class ArticlesView(LoginRequiredMixin, ListView):
 def about(request):
     return render(request, "about.html")
 
-class NewsDetails(DetailView):
+class NewsDetails(LoginRequiredMixin, DetailView):
     model = Noticia
     context_object_name = "noticia"
     template_name = "details_news.html"
@@ -33,16 +33,22 @@ class NewsViews(LoginRequiredMixin, ListView):
     context_object_name = "noticia"
     template_name = "news.html"
 
-class NewsUpdate(UpdateView):
+class NewsUpdate(UserPassesTestMixin, UpdateView):
     model = Noticia
     template_name = "update_news.html"
     success_url = reverse_lazy("Noticias")
     fields = ["titulo", "cuerpo"]
 
-class NewsDelete(DeleteView):
+    def test_func(self) -> bool | None:
+        return self.request.user.is_superuser
+
+class NewsDelete(UserPassesTestMixin, DeleteView):
     model = Noticia
     template_name = "delete_news.html"
     success_url = reverse_lazy("Noticias")
+
+    def test_func(self) -> bool | None:
+        return self.request.user.is_superuser
 
 class ArticleCreateView(UserPassesTestMixin, CreateView):
     model = Articulo
@@ -74,18 +80,21 @@ class ArticleDelete(UserPassesTestMixin, DeleteView):
     def test_func(self) -> bool | None:
         return self.request.user.is_superuser
 
-class ArticleDetails(DetailView):
+class ArticleDetails(LoginRequiredMixin, DetailView):
     model = Articulo
     context_object_name = "articulo"
     template_name = "details_article.html"
 
-class NewsCreateView(CreateView):
+class NewsCreateView(UserPassesTestMixin, CreateView):
     model = Noticia
     template_name = 'create_news.html'
     fields = ["titulo", "cuerpo"]
     success_url = reverse_lazy("Noticias")
 
-class CommentDelete(DeleteView):
+    def test_func(self) -> bool | None:
+        return self.request.user.is_superuser
+
+class CommentDelete(LoginRequiredMixin, DeleteView):
     model = Comentario
     template_name = 'delete_comment.html'
 
@@ -108,7 +117,7 @@ class CommentUpdate(LoginRequiredMixin, UpdateView):
         return reverse('Detalle Artículo', kwargs={'pk': self.object.comment_id})
 
 
-class CommentCreateView(CreateView):
+class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comentario
     template_name = 'create_comment.html'
     fields = ["titulo", "cuerpo"]
@@ -123,6 +132,7 @@ class CommentCreateView(CreateView):
         return reverse('Detalle Artículo', kwargs={'pk': self.pk})
 
 # buscador
+@login_required
 def searchResults(request):
     articulo = []
     form = SearchArticle(request.GET)

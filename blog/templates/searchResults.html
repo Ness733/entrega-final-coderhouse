@@ -1,19 +1,29 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
-<main class="text-center m-10 bg-slate-200 rounded-xl">
-  <h2>
-    Mostrando {{articulo | length}} resultados para: {{form.titulo.value}}
-  </h2>
-  {% if articulo %}
-  <ul>
-    {% for art in articulo %}
-    <li>
-      <h3>{{ art.titulo }} - {{art.id}}</h3>
-      <h4>{{ art.subtitulo }} - {{ art.fecha }}</h4>
-
-      <p>{{art.cuerpo | slice:":100" | safe}}...</p>
-    </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+<main class="text-center m-10 bg-slate-200 p-10 rounded-xl">
+  <div class="flex flex-col gap-5">
+    <h2 class="text-3xl">
+      Mostrando {{articulo | length}} resultados para: {{form.titulo.value}}
+    </h2>
+    {% if articulo %}
+    <ul>
+      {% for art in articulo %}
+      <li class="flex flex-col gap-2 py-5 border-2 border-black rounded-xl m-3">
+        <a
+          class="text-3xl text-blue-500"
+          href="{% url 'Detalle Artículo' art.pk %}"
+          >{{ art.titulo }}</a
+        >
+        <h4>{{ art.subtitulo }} - {{ art.fecha }}</h4>
+        <p>{{art.cuerpo | slice:":80" | safe}}...</p>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <a
+      href="{% url 'Artículos' %}"
+      class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+      >Volver
+    </a>
+  </div>
 </main>
 {% endblock %}

@@ -50,12 +50,3 @@ class Noticia(models.Model):
 
     def __str__(self) -> str:
         return self.titulo
-    
-# class Avatar(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     descripcion = RichTextField()
-#     link = models.URLField(null=True, blank=True)
-#     imagen = models.ImageField(upload_to='avatars', null=True, blank=True)
-
-#     def __str__(self) -> str:
-#         return f"{self.user}"

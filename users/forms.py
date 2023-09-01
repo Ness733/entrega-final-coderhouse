@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from ckeditor.fields import RichTextFormField
 from django.contrib.auth.models import User
 from django import forms
@@ -23,3 +23,12 @@ class UserEditForm(UserChangeForm):
     class Meta:
         model = User
         fields = ['email', 'last_name', 'first_name', 'imagen', 'link']
+
+class PasswordChange(PasswordChangeForm):
+    old_password = forms.CharField(widget=forms.PasswordInput, label='Contraseña Actual')
+    new_password1 = forms.CharField(widget=forms.PasswordInput, label='Nueva Contraseña')
+    new_password2 = forms.CharField(widget=forms.PasswordInput, label='Repetir Contraseña')
+
+    class Meta:
+        model = User
+        fields = ['old_password', 'new_password1', 'new_password2']

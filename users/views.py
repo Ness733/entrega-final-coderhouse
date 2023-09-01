@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth import update_session_auth_hash
 from django.urls import reverse_lazy
 
 # 
@@ -53,10 +54,23 @@ def EditProfileView(request):
             
             usuario.avatar.save()
             form.save()
-            return render(request, 'details_profile.html')
+            return render(request, 'details_profile.html', {'username':usuario})
     else:
         form = UserEditForm(initial={'email': usuario.email, 'first_name': usuario.first_name, 'last_name': usuario.last_name, 'imagen': usuario.avatar.imagen, 'descripcion': usuario.avatar.descripcion, 'link': usuario.avatar.link}, instance=request.user)
     return render(request, 'update_profile.html', {'form': form, 'usuario': usuario})
     
 class CustomLogoutView(LogoutView):
     template_name = 'logout.html'
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChange(user=request.user, data=request.POST)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, request.user)
+            return render(request, 'details_profile.html', {'username':request.user})
+    else:
+        form = PasswordChange(user=request.user)
+    
+    return render(request, 'update_password.html', {'form':form})

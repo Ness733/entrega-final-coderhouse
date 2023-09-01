@@ -1,11 +1,13 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
 <main class="text-center m-10 bg-slate-200 rounded-xl">
-  <h1>Detalle de Noticia</h1>
-  <form action="" method="POST">
+  <div class="py-20 bg-green-500 mb-10">
+    <label class="text-5xl text-white font-bold shadow-black drop-shadow-lg">{{noticia.titulo}}</label>
+  </div>
+  <form class="p-10" action="" method="POST">
     {% csrf_token %}
 
-    <h1>{{noticia.titulo}} - {{noticia.fecha}}</h1>
-    <p>{{noticia.cuerpo}}</p>
+    <h1 class="text-2xl">{{noticia.fecha}}</h1>
+    <div class="p-10 text-3xl mx-32 text-left">{{noticia.cuerpo | safe }}</div>
     
     <button
       class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"

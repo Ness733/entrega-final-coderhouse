@@ -1,6 +1,8 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
 <main class="text-center flex flex-col gap-5 m-10 bg-slate-200 rounded-xl">
-  <h2>Noticias</h2>
+  <div class="py-20 bg-green-500 mb-10">
+    <label class="text-5xl text-white font-bold shadow-black drop-shadow-lg">Noticias</label>
+  </div>
   
   {% if request.user.is_superuser %}
   <div>
@@ -12,26 +14,27 @@
   {% if noticia %}
   <ul class="px-30 py-5">
     {% for n in noticia %}
-    <li><h2 class="text-5xl mb-5 text-left">{{n.titulo}} <small class="text-gray-400">- #{{n.id}}</small></h2></li>
-    <div class="text-left"><small>{{n.fecha}}</small></div>
-    <p class="mt-5 text-left my-10">{{n.cuerpo | safe }}</p>
+    <li><h2 class="text-5xl mb-5 text-left">{{n.titulo}}</h2></li>
+    <div class="text-left text-2xl"><small>{{n.fecha}}</small></div>
+    <li class="mt-5 text-left text-2xl my-10">{{n.cuerpo | safe }}</li>
     <p>
       <button
       class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
     >
-      <a href="{% url 'Detalle Noticia' n.pk %}">Detalle</a>
+      <a href="{% url 'Detalle Noticia' n.pk %}">Leer más</a>
     </button>
-      
-      <button
-      class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+    {% if request.user.is_superuser %}
+    <button
+    class="bg-green-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
     >
-      <a href="{% url 'Editar Noticia' n.pk %}">Editar</a>
+    <a href="{% url 'Editar Noticia' n.pk %}">Editar</a>
     </button>
     <button
-    class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
-  >
+    class="bg-red-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+    > 
     <a href="{% url 'Eliminar Noticia' n.pk %}">Eliminar</a>
-  </button>
+    </button>
+    {% endif %}
     </p>
     {% endfor %}
   </ul>

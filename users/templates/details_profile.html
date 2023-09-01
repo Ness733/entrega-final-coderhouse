@@ -40,7 +40,7 @@
         <li>
             <strong for="html">Descripción:</strong>
             {% if username.avatar.descripcion  %}
-            <div class="bg-blue-200 p-10 rounded-xl">{{ username.avatar.descripcion}}</div>
+            <div class="bg-blue-200 mx-32 p-10 m-5 rounded-xl">{{ username.avatar.descripcion}}</div>
             {% else %}
             <p>Aún no hay una descripción</p>
             {% endif %}
@@ -58,6 +58,8 @@
         {% if request.user == username  %}
         <a class="bg-indigo-500 shadow-lg p-3 rounded-md text-white
         hover:bg-white hover:text-black mt-5" href="{% url "Editar Perfil" %}">Editar Perfil</a>
+        <a class="bg-indigo-500 shadow-lg p-3 rounded-md text-white
+        hover:bg-white hover:text-black mt-5" href="{% url "Cambiar Contraseña" %}">Cambiar Contraseña</a>
         {% endif %}
     </div>
   </div>

@@ -137,7 +137,7 @@ TAILWIND_APP_NAME = 'theme'
 
 NPM_BIN_PATH = r"C:/Program Files/nodejs/npm.cmd"
 
-LOGIN_URL = 'login/'
+LOGIN_URL = '/login/'
 
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"

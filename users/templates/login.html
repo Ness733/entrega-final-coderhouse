@@ -1,15 +1,15 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
 <main class="text-center m-10 bg-slate-200 p-10 rounded-xl">
-  <h1>Sección Login</h1>
+  <h1 class="text-3xl">Ingresar</h1>
   <form class="w-30" method="POST">{% csrf_token %}
     <div>
       <ul class="">
         <li class="my-10 flex justify-center gap-10">
-          <label class="mr-6" for="">Usuario</label>
+          <label class="mr-6" for="">Usuario:</label>
           <input type="text" name="username" id="id_username"/>
         </li>
         <li class="my-10 flex justify-center gap-10">
-          <label for="">Contraseña</label>
+          <label for="">Contraseña:</label>
           <input type="password" name="password" id="id_password" cols="90" rows="10"></input>
         </li>
       </ul>

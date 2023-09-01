@@ -1,17 +1,19 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
 <main class="text-center m-10 bg-slate-200 rounded-xl">
-  <h2 class="text-5xl text-white font-bold py-20 bg-slate-600 mb-10">Artículos</h2>
+  <div class="py-20 bg-amber-500 mb-10">
+    <label class="text-5xl text-white font-bold shadow-black drop-shadow-lg">Artículos</label>
+  </div>
   {% if request.user.is_superuser %}
     <a href="{% url 'Crear Artículo' %}"
       class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-2"
-    >Crear Artículo
+    >Nuevo Artículo
     </a>
   {% endif %}
   <ul class="px-60 py-5">
     {% for a in articulo %}
     <li class="my-10 pb-10 border-b-2 border-gray-400">
       <h2 class="text-4xl mb-5 text-left font-bold">
-      {{a.titulo}} <small class="text-gray-400">- #{{a.id}}</small>
+      {{a.titulo}}
       </h2>
       <h3 class="text-3xl text-left">{{a.subtitulo}}</h3>
       <div class="text-left"><small>Autor: {{a.user}}</small></div>

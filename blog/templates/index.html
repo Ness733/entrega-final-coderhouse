@@ -25,7 +25,7 @@
           </li>
           {% endif %}
           <li>
-            <a href="{% url 'Sobre Nosotros' %}">Sobre Nosotros</a>
+            <a href="{% url 'Sobre Mi' %}">Sobre Mi</a>
           </li>
           {% if user.is_authenticated %}
           <form class="flex flex-row gap-4 pr-8 border-r-2 border-white" action="{% url "Resultados" %}" method="get">
@@ -65,16 +65,13 @@
     {% block content %}
 
     <main class="text-center m-10 bg-slate-200 p-10 rounded-xl">
-      <h1 class="text-3xl">Sección Principal</h1>
-      <p class="m-5 mx-60 text-2xl">Ad officia aliqua in elit minim aliquip voluptate ex id mollit anim officia fugiat elit. Commodo aliquip laboris et sunt excepteur incididunt culpa aliqua tempor nisi commodo excepteur. Nisi fugiat laboris ut nostrud non qui magna consectetur. <br>
-        <br>
-      Labore sint duis duis non ut labore enim. Deserunt laborum adipisicing sunt cillum dolor. Proident id eiusmod cillum ipsum occaecat aliquip et incididunt sunt adipisicing sunt.<br>
-      <br>
-      Dolore ex nulla esse amet eu consequat commodo ipsum. Officia irure magna nulla et anim pariatur reprehenderit aliquip aute consequat in et eu. Magna consectetur commodo dolor aute ea ut fugiat voluptate irure incididunt magna dolore commodo exercitation. Sunt consequat consectetur ad qui cupidatat id cupidatat laborum dolore adipisicing. Ex voluptate reprehenderit consequat laborum velit qui pariatur id cupidatat.<br>
-      <br>
-      Dolore laboris nostrud do sit. Ullamco irure aute sunt adipisicing nulla deserunt irure occaecat in dolore. Aliquip mollit deserunt dolor amet deserunt fugiat magna elit. Anim minim quis quis proident nulla excepteur. Sunt enim sint irure magna cillum minim veniam ipsum ipsum velit. Dolor id consequat magna ipsum.<br>
-      <br>
-      Duis in in qui esse irure proident qui est aliquip reprehenderit mollit do. Cupidatat excepteur est ex eu. Lorem amet non excepteur minim laborum amet sint irure veniam sit amet mollit. Minim ullamco pariatur ea magna laboris deserunt incididunt excepteur cupidatat cupidatat sunt duis ipsum irure.</p>
+      <div class="relative text-center">
+        <img class="w-4/5 mx-auto rounded-xl opacity-80" src="../../media/IMG_20230315_095245168_HDR.jpg" alt="fondo_de_pantalla_inicio">
+        <div class="text-5xl stroke-2 font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" for="html">Bienvenidos a mi Blog</div>
+      </div>
+      <p class="m-5 mx-60 text-2xl">
+        
+      </p>
     </main>
 
     {% endblock %}
