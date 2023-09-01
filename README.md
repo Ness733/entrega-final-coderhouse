@@ -1,8 +1,8 @@
-## TuPrimeraPagina-Rosales
+## Trabajo Final - Blog - Nestor Rosales
 
 Demostración del sitio
 
-(https://www.youtube.com/watch?v=2IybyLj6Y_E "Trabajo Final - Blog - CoderHouse - Nestor Rosales")
+https://www.youtube.com/watch?v=2IybyLj6Y_E
 
 # Secciones y Funcionalidades
 
