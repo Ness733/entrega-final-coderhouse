@@ -11,7 +11,7 @@ class Articulo(models.Model):
     subtitulo = models.CharField(max_length=30)
     cuerpo = RichTextField()
     fecha = models.DateTimeField(auto_now_add=True, editable=False)
-    imagen = models.ImageField(upload_to='media/post_imgs', null=True, blank=True)
+    imagen = models.ImageField(upload_to='post_imgs/', null=True, blank=True)
     
 
     def __str__(self) -> str:

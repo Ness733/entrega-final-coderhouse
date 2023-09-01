@@ -57,7 +57,7 @@ class ArticleCreateView(UserPassesTestMixin, CreateView):
     success_url = reverse_lazy("Artículos")
 
     def form_valid(self, form):
-        form.instance.imagen = self.request.FILES['imagen'].name if 'imagen' in self.request.FILES else None
+        form.instance.autor = self.request.user
         return super().form_valid(form)
     
     def test_func(self) -> bool | None:

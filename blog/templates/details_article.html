@@ -11,7 +11,8 @@
     </div>
     {% endif %}
     <div class="py-10 px-60 text-left">
-      <h1 class="text-4xl">{{articulo.titulo}}</h1>
+      <strong class="text-4xl">{{articulo.titulo}}</strong>
+      <h1 class="text-3xl">{{articulo.subtitulo}}</h1>
       <small>Autor: {{articulo.user}} - Fecha: {{articulo.fecha}}</small>
       <div class="pt-5 text-2xl">{{articulo.cuerpo | safe }}</div>
     </div>
