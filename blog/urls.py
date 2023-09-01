@@ -24,15 +24,6 @@ urlpatterns = [
     path("news/<int:pk>/eliminar", views.NewsDelete.as_view(), name="Eliminar Noticia",),
     path("news/<int:pk>/detalle", views.NewsDetails.as_view(), name="Detalle Noticia",),
     path("create_news/", views.NewsCreateView.as_view(), name="Crear Noticia",),
-    path("login/", views.CustomLoginView.as_view(), name="login",),
-    path("register/", views.RegisterView.as_view(), name="register",),
-    path("profile_edit/", views.EditProfileView, name="Editar Perfil",),
-    path("profile/", views.ProfileView, name="Perfil",),
-    path("logout/", views.CustomLogoutView.as_view(), name="logout",),
-    
-    
-
-
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

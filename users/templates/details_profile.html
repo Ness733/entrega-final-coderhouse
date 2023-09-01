@@ -1,0 +1,65 @@
+{% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
+<main class="text-center m-10 p-10 bg-slate-200 rounded-xl">
+  <h1 class="text-3xl pb-10">Perfil</h1>
+  <div>
+    <ul class="border-2 rounded-xl border-black p-5 text-2xl flex flex-col gap-3">
+        <li>
+            {% if username.avatar.imagen %}
+            <img class="w-40 h-40 m-10 rounded-full mx-auto" src="{{username.avatar.imagen.url}}"
+            alt="{{username.avatar.imagen}}">
+            {% else %}
+            <label for="html">Sin Avatar</label>
+            {% endif %}
+        </li>
+        <li>
+            <strong for="html">Usuario:</strong>
+            <br>
+            {{username}}
+        </li>
+        <li>
+            <strong for="html">Nombre y Apellido:</strong>
+            <br>
+            {{username.first_name}}
+            {{username.last_name}}
+        </li>
+        
+        <li>
+            <strong for="html">Email:</strong>
+            <br>
+            {{username.email}}
+        </li>
+        <li>
+            <strong for="html">URL Personal:</strong>
+            <br>
+            {% if username.avatar.link %}
+            <a class="text-blue-600" href="{{username.avatar.link}}">{{username.avatar.link}}</a>
+            {% else %}
+            <p>Ninguno</p>
+            {% endif %}
+        </li>
+        <li>
+            <strong for="html">Descripción:</strong>
+            {% if username.avatar.descripcion  %}
+            <div class="bg-blue-200 p-10 rounded-xl">{{ username.avatar.descripcion}}</div>
+            {% else %}
+            <p>Aún no hay una descripción</p>
+            {% endif %}
+        </li>
+    </ul>
+    <div class="pt-5">
+        <input
+        type=button
+        value='Atrás'
+        onClick="javascript:history.go(-1);"
+        class="bg-indigo-500 hover:cursor-pointer shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+        >
+        </input>
+
+        {% if request.user == username  %}
+        <a class="bg-indigo-500 shadow-lg p-3 rounded-md text-white
+        hover:bg-white hover:text-black mt-5" href="{% url "Editar Perfil" %}">Editar Perfil</a>
+        {% endif %}
+    </div>
+  </div>
+</main>
+{% endblock %}

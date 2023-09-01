@@ -16,7 +16,7 @@
         <li class="translate-x-2">
           <label class="pr-5 align-top" for="">Descripción:</label>
           {{form.media}}
-          {{form.descripcion}}
+          {{form.descripcion | safe}}
         </li>
         <li class="-translate-x-5">
           <label class="pr-5" for="">URL Personal:</label>
@@ -47,7 +47,7 @@
       <button
       class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
       >
-        <a href="{% url "Perfil" %}">Volver</a>
+        <a href="{% url "Perfil" request.user %}">Volver</a>
       </button>
     </div>
       

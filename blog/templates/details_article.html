@@ -22,10 +22,18 @@
       </h3>
 
       {% for comentario in articulo.comentarios.all %}
-      <div class="p-5 mt-5 rounded-xl bg-blue-200 drop-shadow-xl mx-52">
+      <div class="p-5 mt-10 rounded-xl bg-blue-200 drop-shadow-xl mx-52">
         <div class="pb-5">
-          <h1 class="text-4xl font-bold">{{comentario.user}}</h1>
+          <div class="flex gap-3 items-center">
+            {% if comentario.user.avatar.imagen  %}
+            <img class="h-10 w-10 rounded-full" src="{{comentario.user.avatar.imagen.url}}" alt="{{comentario.user}}">
+            {% else %}
+            <img class="h-10 w-10 rounded-full" src="{{request.user.avatar.imagen.url}}" alt="{{request.user}}">
+            {% endif %}
+            <a class="text-3xl text-blue-700 font-bold" href="{% url "Perfil" comentario.user %}">{{comentario.user}}</a>
+          </div>
           <small>{{comentario.fecha}}</small>
+          
         </div>
         <h2 class="text-xl font-bold">{{comentario.titulo}}</h2>
         <p class="text-xl">{{comentario.cuerpo | safe}}</p>

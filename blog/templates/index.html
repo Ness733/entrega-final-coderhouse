@@ -55,7 +55,7 @@
             {% if request.user.avatar.imagen %}
             <img class="h-10 w-10 rounded-full" src="{{request.user.avatar.imagen.url}}" alt="{{request.user.username}}">
           {% endif %}
-            <a href="{% url 'Perfil' %}">{{request.user.username}}</a>
+            <a href="{% url 'Perfil' request.user.username %}">{{request.user.username}}</a>
           </li>
           {% endif %}
         </ul>
