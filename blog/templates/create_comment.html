@@ -6,6 +6,7 @@
     <form method="post">
       {% csrf_token %} {{form.media}}
       <li class="my-10">
+        <label for="">Autor: {{user}}</label>
         <label class="mx-5">Título:</label>
         <input type="text" name="titulo" id="id_titulo" style="width: 400px" />
       </li>

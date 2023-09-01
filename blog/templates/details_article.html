@@ -29,6 +29,7 @@
         </div>
         <h2 class="text-xl font-bold">{{comentario.titulo}}</h2>
         <p class="text-xl">{{comentario.cuerpo | safe}}</p>
+        {% if comentario.user == request.user %}
         <div
          class="flex gap-3 place-content-end">
           <a href="{% url "Eliminar Comentario" comentario.pk %}"
@@ -40,6 +41,7 @@
           >Editar
           </a>
         </div>
+        {% endif %}
       </div>
       {% empty %}
       <h3 class="text-2xl text-gray-500 pt-5">Aún no hay comentarios...</h3>

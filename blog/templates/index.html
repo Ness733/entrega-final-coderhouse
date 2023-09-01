@@ -52,10 +52,10 @@
           </li>
           
           <li class="flex items-center gap-3">
-            {% if request.user.avatar %}
+            {% if request.user.avatar.imagen %}
             <img class="h-10 w-10 rounded-full" src="{{request.user.avatar.imagen.url}}" alt="{{request.user.username}}">
           {% endif %}
-            <a href="{% url 'Editar Perfil' %}">{{request.user.username}}</a>
+            <a href="{% url 'Perfil' %}">{{request.user.username}}</a>
           </li>
           {% endif %}
         </ul>

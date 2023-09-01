@@ -3,6 +3,7 @@ from .models import Articulo, Comentario, Noticia
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextFormField
 
 
 class ArticleForm(forms.ModelForm):
@@ -26,10 +27,12 @@ class UserEditForm(UserChangeForm):
     last_name = forms.CharField(label="Apellido")
     first_name = forms.CharField(label="Nombre")
     imagen = forms.ImageField(widget=forms.FileInput, required=False)
+    descripcion = RichTextFormField()
+    link = forms.URLField(required=False)
 
     class Meta:
         model = User
-        fields = ['email', 'last_name', 'first_name', 'imagen']
+        fields = ['email', 'last_name', 'first_name', 'imagen', 'descripcion', 'link']
 
 class SearchArticle(forms.Form):
     titulo = forms.CharField(required=False)
@@ -37,4 +40,5 @@ class SearchArticle(forms.Form):
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = UserCreationForm.Meta.fields
+        fields = ['username', 'email', 'password1', 'password2']
+        

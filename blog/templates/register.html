@@ -1,8 +1,21 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
 <main class="text-center m-10 bg-slate-200 p-10 rounded-xl">
-  <h1>Sección Crear Cuenta</h1>
+  <h1 class="text-3xl p-10">Registro</h1>
   <form method="POST">{% csrf_token %}
-    <div class="flex flex-col gap-5 justify-center">{{form.as_div}}</div>
+    <div class="flex flex-col items-center">
+      {% for field in form %}
+      <p class="flex flex-col mb-5 gap-2 w-1/4">
+        {% if field.errors %}
+        <ul class="flex flex-col mb-5 gap-2 w-1/4">
+          {% for error in field.errors %}
+          <li>{{error}}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {{ field.label_tag }} {{ field }}
+      </p>
+      {% endfor %}
+    </div>
     <button
     class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
   >

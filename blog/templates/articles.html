@@ -1,10 +1,12 @@
 {% extends "./index.html" %} {% load static tailwind_tags %} {% block content %}
 <main class="text-center m-10 bg-slate-200 rounded-xl">
   <h2 class="text-5xl text-white font-bold py-20 bg-slate-600 mb-10">Artículos</h2>
-  <a href="{% url 'Crear Artículo' %}"
-    class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-2"
-  >Crear Artículo
-  </a>
+  {% if request.user.is_superuser %}
+    <a href="{% url 'Crear Artículo' %}"
+      class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-2"
+    >Crear Artículo
+    </a>
+  {% endif %}
   <ul class="px-60 py-5">
     {% for a in articulo %}
     <li class="my-10 pb-10 border-b-2 border-gray-400">
@@ -25,14 +27,16 @@
           class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
         >Leer más
         </a>
-        <a href="{% url "Editar Artículo" a.pk %}"
-          class="bg-green-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
-        >Editar
-        </a>
-        <a href="{% url "Eliminar Artículo" a.pk %}"
-          class="bg-red-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
-        >Eliminar
-        </a>
+        {% if request.user.is_superuser %}
+          <a href="{% url "Editar Artículo" a.pk %}"
+            class="bg-green-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+          >Editar
+          </a>
+          <a href="{% url "Eliminar Artículo" a.pk %}"
+            class="bg-red-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
+          >Eliminar
+          </a>
+          {% endif %}
       </ul>
     </li>
      {% endfor %}
