@@ -11,7 +11,7 @@
   {% endif %}
   <ul class="px-60 py-5">
     {% for a in articulo %}
-    <li class="my-10 pb-10 border-b-2 border-gray-400">
+    <li class="my-10 pb-10 border-b-2 w-4/5 mx-auto border-gray-400">
       <h2 class="text-4xl mb-5 text-left font-bold">
       {{a.titulo}}
       </h2>
@@ -24,7 +24,7 @@
       <div class="text-left">
         <p class="mt-5">{{a.cuerpo | slice:":250" | safe }}...</p>
       </div>
-      <ul class="flex gap-3 place-content-end">
+      <ul class="flex gap-3 place-content-center">
         <a href="{% url "Detalle Artículo" a.pk %}"
           class="bg-indigo-500 shadow-lg p-2 rounded-md text-white hover:bg-white hover:text-black mt-5"
         >Leer más
