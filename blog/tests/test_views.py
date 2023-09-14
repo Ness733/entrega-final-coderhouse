@@ -1,9 +1,8 @@
 from django.test import TestCase, Client
 from django.test.client import RequestFactory
 from django.urls import reverse
-from blog.models import Articulo, Comentario, Noticia
 from django.contrib.auth.models import User
-import json
+
 
 
 class TestViews(TestCase):
